@@ -12,7 +12,7 @@
 </script>
 	
 <!-- Simple Page Needs================================================== -->
-<title>Jacob Hixons</title>
+<title>Jacob Hixon</title>
 <meta charset="UTF-8">
 <meta name="description" content="Jacob Hixon is a student at Duquesne University and employee at Giant Eagle in Pittsburgh, PA. Learn more about his education, work experience, and skills." />
 <meta name="keywords" content="Jacob Hixon, Duquesne University, Giant Eagle, Pittsburgh, PA, student, employee, marketing, education, work experience, skills" />
@@ -276,24 +276,26 @@
             ================================================== --> 
             <div id="contact">
                 <div class="row">
-                    <!-- Contact Form -->
+                      <!-- Contact Form -->
                     <section class="contact-form col-md-6 padding_30 padbot_45">
-    <div class="section-title top_15 bottom_30"><span></span><h2>Contact Form</h2></div>
-    <form action="https://formspree.io/f/meqwoyqv" method="POST">
-        <div class="row">
-            <div class="col-md-12">
-                <label>Your email: <input type="email" name="email"></label>
-            </div>
-            <div class="col-md-12">
-                <label>Your message: <textarea name="message"></textarea></label>
-            </div>
-            <div class="col-md-12 top_15 bottom_30">
-                <button class="site	" type="submit">Submit</button>
-            </div>
-        </div>
-    </form>
-</section>
-
+                   <div class="section-title top_15 bottom_30"><span></span><h2>Contact Form</h2></div>
+                <form class="site-form" action="https://formspree.io/f/xnqydqww" method="POST">
+                            <div class="row">
+                    <div class="col-md-6">
+                    <input class="site-input" type="text" placeholder="Name" name="name" required>
+                    </div>
+                    <div class="col-md-6">
+                    <input class="site-input" type="email" placeholder="Email" name="_replyto" required>
+                    </div>
+                    <div class="col-md-12">
+                    <textarea class="site-area" placeholder="Message" name="message" required></textarea>
+                    </div>
+                    <div class="col-md-12 top_15 bottom_30">
+                    <button class="site-btn" type="submit">Submit</button>
+                    </div>
+                </div>
+                </form>
+                </section>
                     <!-- Contact Informations -->
                     <section class="contact-info col-md-6 padding_30 padbot_45">
                         <div class="section-title top_15 bottom_30"><span></span><h2>Contact Informations</h2></div>
@@ -317,6 +319,41 @@
                     </section>
                 </div>
             </div>
+      <!-- Quotes Section -->
+<div id="quote-container"></div>
+
+<style>
+  #quote-container {
+    margin-top: 20px;
+    padding: 60px;
+    background-color: #f2f2f2;
+    font-size: 24px;
+    line-height: 1.5;
+    text-align: center;
+  }
+</style>
+
+<script>
+  var quotes = [
+ "Innovation distinguishes between a leader and a follower.",
+    "Find what you love, and let it kill you",
+    "It always seems impossible until it's done.",
+    "The only way to do great work is to love what you do.",
+    "Have the courage to follow your heart and intuition. They somehow already know what you truly want to become.",
+    "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.r"
+  ];
+
+  function displayQuote() {
+    var randomIndex = Math.floor(Math.random() * quotes.length);
+    var quote = quotes[randomIndex];
+    var quoteContainer = document.getElementById("quote-container");
+    quoteContainer.innerHTML = quote;
+  }
+
+  setInterval(displayQuote, 20000);
+</script>
+
+
             
         </div><!-- Content - End -->
      </div> <!-- col-md-12 end -->
