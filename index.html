@@ -1,634 +1,70 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark light" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jacob Hixon's little corner of the internet.">
   <title>Jacob Hixon</title>
-  <style>
-    :root{
-      --bg: #05060a;
-      --fg: rgba(255,255,255,.94);
-      --muted: rgba(255,255,255,.64);
-      --line: rgba(255,255,255,.12);
-      --card: rgba(255,255,255,.08);
-      --card2: rgba(255,255,255,.12);
-      --shadow: rgba(0,0,0,.5);
-      --radius: 20px;
-      --max: 1080px;
-      --glass-border: rgba(255,255,255,.20);
-      --glass-stroke: rgba(255,255,255,.35);
-      --glass-glow: rgba(255,255,255,.12);
-      --glass-hue: 210;
-      --glass-hue-2: 215;
-      --glass-sat: 90%;
-      --glass-light: 70%;
-      --light-x: 50%;
-      --light-y: 40%;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: radial-gradient(1200px 900px at 10% 10%, rgba(255,255,255,.14), transparent 58%),
-                  radial-gradient(1000px 700px at 82% 20%, rgba(120,160,255,.16), transparent 60%),
-                  radial-gradient(980px 800px at 40% 90%, rgba(255,120,200,.12), transparent 62%),
-                  var(--bg);
-      color:var(--fg);
-      font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      overflow-x:hidden;
-    }
-
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:32px 22px 90px}
-    header{
-      position:sticky; top:0;
-      z-index:50;
-      backdrop-filter: blur(14px) saturate(130%);
-      background: linear-gradient(to bottom, rgba(4,6,10,.78), rgba(4,6,10,.20));
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .topbar{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:14px 22px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-      font-size:12px;
-      color:var(--muted);
-    }
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: rgba(255,255,255,.85);
-      box-shadow: 0 0 22px rgba(255,255,255,.45);
-    }
-    nav{display:flex; gap:10px; align-items:center}
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      color:rgba(255,255,255,.82);
-      font-size:13px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
-      user-select:none;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.20);
-      box-shadow: 0 10px 24px rgba(0,0,0,.22);
-    }
-    .pill:active{transform: translateY(0px) scale(.98)}
-
-    .hero{
-      position:relative;
-      padding:80px 0 42px;
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:24px;
-      align-items:stretch;
-    }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr; padding-top:48px}
-    }
-
-    .title{
-      font-size: clamp(44px, 6.6vw, 80px);
-      line-height: 1.02;
-      margin: 0 0 14px;
-      letter-spacing:-.02em;
-    }
-    .titleGlass{
-      position:relative;
-      display:inline-block;
-      padding:4px 10px;
-      margin-left:-10px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.22);
-      background:
-        radial-gradient(120% 120% at var(--light-x) var(--light-y),
-          rgba(255,255,255,.5),
-          rgba(255,255,255,0) 55%),
-        linear-gradient(140deg,
-          hsla(var(--glass-hue), 90%, 85%, 0.22),
-          rgba(255,255,255,.06) 55%),
-        radial-gradient(140% 100% at 100% 0%,
-          hsla(var(--glass-hue-2), 90%, 70%, 0.20),
-          transparent 60%);
-      box-shadow: 0 20px 40px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.18);
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      color: rgba(255,255,255,.98);
-    }
-    .titleGlass::after{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius: inherit;
-      background-image:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.14'/></svg>");
-      mix-blend-mode: soft-light;
-      opacity:.35;
-      pointer-events:none;
-    }
-    .glassLetters{
-      display:inline-flex;
-      flex-wrap:wrap;
-      gap:4px;
-    }
-    .glassLetter{
-      position:relative;
-      display:inline-block;
-      padding:0;
-      background:
-        radial-gradient(120% 120% at var(--light-x) var(--light-y),
-          rgba(255,255,255,.6),
-          rgba(255,255,255,0) 50%),
-        linear-gradient(140deg,
-          hsla(var(--glass-hue), 90%, 85%, 0.75),
-          hsla(var(--glass-hue-2), 90%, 72%, 0.6) 60%),
-        radial-gradient(140% 100% at 100% 0%,
-          hsla(var(--glass-hue-2), 95%, 80%, 0.5),
-          transparent 70%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow:
-        0 0 12px rgba(255,255,255,.35),
-        0 6px 16px rgba(0,0,0,.4);
-    }
-    .subtitle{
-      margin:0 0 20px;
-      color:var(--muted);
-      font-size:16px;
-      max-width: 52ch;
-    }
-    .ctaRow{display:flex; gap:10px; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 16px;
-      border-radius: 14px;
-      box-shadow: 0 16px 32px rgba(0,0,0,.24);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
-      user-select:none;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.10);
-      border-color: rgba(255,255,255,.22);
-      box-shadow: 0 20px 36px rgba(0,0,0,.30);
-    }
-    .btn:active{transform: translateY(0px) scale(.99)}
-    .btn strong{font-weight:650}
-    .btn .hint{color:var(--muted); font-size:13px}
-
-    .glass-surface{
-      position:relative;
-      border:1px solid var(--glass-border);
-      background:
-        linear-gradient(140deg,
-          hsla(var(--glass-hue), var(--glass-sat), 85%, 0.20),
-          rgba(255,255,255,.03) 55%),
-        radial-gradient(120% 120% at 100% 0%,
-          hsla(var(--glass-hue-2), 90%, 70%, 0.16),
-          transparent 55%);
-      backdrop-filter: blur(16px) saturate(160%);
-      -webkit-backdrop-filter: blur(16px) saturate(160%);
-      overflow:hidden;
-      isolation:isolate;
-    }
-    .glass-surface::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius: inherit;
-      background:
-        radial-gradient(180px 180px at var(--light-x) var(--light-y),
-          hsla(var(--glass-hue), 90%, 85%, 0.55),
-          transparent 70%);
-      opacity:.55;
-      mix-blend-mode: screen;
-      pointer-events:none;
-      transition: opacity .2s ease;
-    }
-    .glass-surface::after{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius: inherit;
-      background-image:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.12'/></svg>");
-      mix-blend-mode: soft-light;
-      opacity:.25;
-      pointer-events:none;
-    }
-
-    .glass{
-      position:relative;
-      border-radius: var(--radius);
-      box-shadow: 0 28px 70px rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.12);
-      transform-style:preserve-3d;
-      will-change: transform, box-shadow;
-    }
-    .glass::before{
-      content:"";
-      position:absolute;
-      inset:1px;
-      border-radius: calc(var(--radius) - 2px);
-      background: linear-gradient(120deg, rgba(255,255,255,.28), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
-      mix-blend-mode: screen;
-    }
-    .glass::after{
-      content:"";
-      position:absolute;
-      inset:-40% 10% auto -20%;
-      height:140%;
-      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,.22), transparent 60%);
-      opacity:.5;
-      pointer-events:none;
-      transform: translate3d(var(--glow-x, 0px), var(--glow-y, 0px), 0);
-      transition: transform .25s ease;
-      mix-blend-mode: screen;
-    }
-    .glassInner{padding:20px}
-    .glass h3{
-      margin:0 0 8px; font-size:13px;
-      color: rgba(255,255,255,.86);
-      letter-spacing:.3px;
-      text-transform:uppercase;
-    }
-    .mini{
-      color: var(--muted);
-      font-size:14px;
-      margin:0 0 16px;
-    }
-    .stats{
-      display:grid; grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .stat{
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.20);
-      padding:12px 12px;
-      min-height: 70px;
-      backdrop-filter: blur(10px);
-    }
-    .stat .k{font-size:12px; color:var(--muted); margin:0 0 4px}
-    .stat .v{font-size:16px; margin:0; color:rgba(255,255,255,.90)}
-    .tagRow{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
-    .tag{
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      padding:7px 10px;
-      color: rgba(255,255,255,.78);
-      font-size:12px;
-    }
-
-    .sectionTitle{
-      margin: 52px 0 12px;
-      font-size:13px;
-      color: rgba(255,255,255,.70);
-      letter-spacing:.28em;
-      text-transform:uppercase;
-    }
-
-    .minimal{
-      display:grid;
-      gap:12px;
-    }
-
-    .note{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      padding:16px 18px;
-      border-radius: 16px;
-      box-shadow: 0 18px 36px rgba(0,0,0,.30);
-    }
-    .note h4{
-      margin:0 0 6px;
-      font-size:16px;
-      font-weight:600;
-    }
-    .note p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .links{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .links a{
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:13px;
-      color:rgba(255,255,255,.86);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .links a:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.10);
-      border-color: rgba(255,255,255,.22);
-    }
-
-    .reveal{
-      opacity:0;
-      transform: translateY(12px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.on{
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    .blob{
-      position:fixed;
-      inset:auto;
-      width: 520px; height: 520px;
-      border-radius: 999px;
-      filter: blur(38px);
-      opacity: .22;
-      pointer-events:none;
-      z-index:0;
-      mix-blend-mode: screen;
-      will-change: transform;
-      animation: floatBlob 18s ease-in-out infinite;
-    }
-    .b1{
-      left:-140px; top:-140px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(140,170,255,.0) 60%);
-      animation-delay: -4s;
-    }
-    .b2{
-      right:-180px; top:120px;
-      background: radial-gradient(circle at 40% 40%, rgba(140,170,255,.9), rgba(255,120,200,.0) 62%);
-      animation-duration: 22s;
-      animation-delay: -8s;
-    }
-    .b3{
-      left:40%; bottom:-240px; transform: translateX(-50%);
-      background: radial-gradient(circle at 55% 45%, rgba(255,120,200,.9), rgba(255,255,255,.0) 60%);
-      animation-duration: 20s;
-      animation-delay: -12s;
-    }
-
-    @keyframes floatBlob{
-      0%{transform: translate3d(0,0,0) scale(1);}
-      40%{transform: translate3d(20px, -30px, 0) scale(1.06);}
-      70%{transform: translate3d(-10px, 18px, 0) scale(0.98);}
-      100%{transform: translate3d(0,0,0) scale(1);}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .blob{animation:none;}
-    }
-
-    .glow{
-      position:fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      pointer-events:none;
-      z-index:1;
-      background: radial-gradient(circle at 50% 50%, hsla(var(--glass-hue), 90%, 72%, 0.26), transparent 62%);
-      transform: translate3d(-999px,-999px,0);
-      filter: blur(2px);
-      mix-blend-mode: screen;
-      will-change: transform;
-    }
-
-    main{position:relative; z-index:2}
-    footer{
-      margin-top:70px;
-      color: rgba(255,255,255,.52);
-      font-size:13px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top:16px;
-    }
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="blob b1" aria-hidden="true"></div>
-  <div class="blob b2" aria-hidden="true"></div>
-  <div class="blob b3" aria-hidden="true"></div>
-  <div class="glow" id="glow" aria-hidden="true"></div>
-
-  <header>
-    <div class="topbar">
-      <div class="brand">
-        <div class="dot"></div>
-        <span class="mono">jacob.hixon.me</span>
+  <div class="desktop">
+    <header class="menu-bar">
+      <div class="menu-left">
+        <span class="apple"></span>
+        <span>File</span>
+        <span>Edit</span>
+        <span>View</span>
+        <span>Special</span>
       </div>
-      <nav>
-        <a class="pill glass-surface" href="mailto:jacob@hixon.me">Email</a>
-        <a class="pill glass-surface" href="mailto:jacob@hixon.me">Contact</a>
-      </nav>
-    </div>
-  </header>
+      <div class="menu-right" id="clock">--:--</div>
+    </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="reveal">
-        <h1 class="title">
-          <span class="glassLetters" aria-label="Jacob Hixon">
-            <span class="glassLetter" aria-hidden="true">J</span>
-            <span class="glassLetter" aria-hidden="true">a</span>
-            <span class="glassLetter" aria-hidden="true">c</span>
-            <span class="glassLetter" aria-hidden="true">o</span>
-            <span class="glassLetter" aria-hidden="true">b</span>
-            <span class="glassLetter" aria-hidden="true">    </span>
-            <span class="glassLetter" aria-hidden="true">H</span>
-            <span class="glassLetter" aria-hidden="true">i</span>
-            <span class="glassLetter" aria-hidden="true">x</span>
-            <span class="glassLetter" aria-hidden="true">o</span>
-            <span class="glassLetter" aria-hidden="true">n</span>
-          </span>
-        </h1>
-        <p class="subtitle">A minimal, liquid-glass workspace.</p>
-        <div class="ctaRow">
-          <a class="btn glass-surface" href="mailto:jacob@hixon.me"><strong>Say hello</strong> <span class="hint">open inbox</span></a>
+    <main class="screen">
+      <section class="welcome">
+        <div class="welcome-title" aria-live="polite">
+          <span id="typed"></span><span class="cursor"></span>
         </div>
-      </div>
+      </section>
 
-      <aside class="glass glass-surface" id="tiltCard" aria-label="Interactive card">
-        <div class="glassInner">
-          <h3>Status</h3>
-          <p class="mini">Live build: <span class="mono" id="buildHint">main</span></p>
-          <div class="stats">
-            <div class="stat">
-              <p class="k">Focus</p>
-              <p class="v">Automation + IT</p>
-            </div>
-            <div class="stat">
-              <p class="k">Current mode</p>
-              <p class="v" id="modeText">Calm</p>
-            </div>
+      <section class="window-grid" id="links">
+        <div class="mac-window">
+          <div class="titlebar">
+            <button class="close" aria-label="Close">×</button>
+            <span>Quick Links</span>
+            <span class="title-spacer"></span>
           </div>
-          <div class="tagRow">
-            <span class="tag">Cloudflare Pages</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">HomeKit</span>
-            <span class="tag">Python</span>
+          <div class="window-content">
+            <a href="https://www.linkedin.com/in/jacob-hixon/" target="_blank" rel="noopener">
+              <span class="icon">↗</span> LinkedIn
+            </a>
+            <a href="https://github.com/JacobHixon698" target="_blank" rel="noopener">
+              <span class="icon">⌘</span> GitHub
+            </a>
           </div>
         </div>
-      </aside>
-    </section>
 
-    <footer class="reveal">
-      <div>Jacob Hixon <span class="mono"> </span></div>
-    </footer>
-  </main>
+        <div class="mac-window">
+          <div class="titlebar">
+            <button class="close" aria-label="Close">×</button>
+            <span>Servers</span>
+            <span class="title-spacer"></span>
+          </div>
+          <div class="window-content">
+            <a href="https://proxmox.hixon.me/">
+              <span class="icon">▣</span> Proxmox
+            </a>
+            <a href="https://actual.hixon.me/">
+              <span class="icon">$</span> Actual
+            </a>
+          </div>
+        </div>
+      </section>
 
-  <script>
-    (function () {
-      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const root = document.documentElement;
+      <p class="footer" id="footer">hixon.me · 2026</p>
+    </main>
+  </div>
 
-      const revealEls = Array.from(document.querySelectorAll(".reveal"));
-      const io = new IntersectionObserver((entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) e.target.classList.add("on");
-        }
-      }, { threshold: 0.12 });
-      revealEls.forEach(el => io.observe(el));
-
-      const glow = document.getElementById("glow");
-      let px = -999, py = -999, gx = -999, gy = -999;
-
-      function moveGlow(x, y) {
-        px = x; py = y;
-        root.style.setProperty("--light-x", `${x}px`);
-        root.style.setProperty("--light-y", `${y}px`);
-      }
-
-      function tickGlow() {
-        gx += (px - gx) * 0.12;
-        gy += (py - gy) * 0.12;
-        glow.style.transform = `translate3d(${gx - 210}px, ${gy - 210}px, 0)`;
-        requestAnimationFrame(tickGlow);
-      }
-      tickGlow();
-
-      const card = document.getElementById("tiltCard");
-      let targetRX = 0, targetRY = 0, curRX = 0, curRY = 0;
-
-      function setTiltFromPoint(clientX, clientY) {
-        const r = card.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-
-        const dx = (clientX - cx) / (r.width / 2);
-        const dy = (clientY - cy) / (r.height / 2);
-
-        const clamp = (n) => Math.max(-1, Math.min(1, n));
-        const ndx = clamp(dx);
-        const ndy = clamp(dy);
-
-        targetRY = ndx * 7;
-        targetRX = -ndy * 7;
-
-        const glowX = ndx * 18;
-        const glowY = ndy * 18;
-        card.style.setProperty("--glow-x", `${glowX}px`);
-        card.style.setProperty("--glow-y", `${glowY}px`);
-      }
-
-      function resetTilt() {
-        targetRX = 0; targetRY = 0;
-        card.style.setProperty("--glow-x", "0px");
-        card.style.setProperty("--glow-y", "0px");
-      }
-
-      function tickTilt() {
-        curRX += (targetRX - curRX) * 0.10;
-        curRY += (targetRY - curRY) * 0.10;
-        card.style.transform = `rotateX(${curRX}deg) rotateY(${curRY}deg) translateY(${Math.abs(curRX) * -0.15}px)`;
-        requestAnimationFrame(tickTilt);
-      }
-      tickTilt();
-
-      const b1 = document.querySelector(".b1");
-      const b2 = document.querySelector(".b2");
-      const b3 = document.querySelector(".b3");
-      const modeText = document.getElementById("modeText");
-
-      function onScroll() {
-        const y = window.scrollY || 0;
-        const h = Math.max(1, document.body.scrollHeight - window.innerHeight);
-        const t = Math.max(0, Math.min(1, y / h));
-
-        if (!prefersReduced) {
-          b1.style.transform = `translate3d(${t * 40}px, ${t * 30}px, 0)`;
-          b2.style.transform = `translate3d(${t * -50}px, ${t * 20}px, 0)`;
-          b3.style.transform = `translate3d(calc(-50% + ${t * 30}px), ${t * -40}px, 0)`;
-        }
-
-        const hue = 210 + t * 90;
-        const hue2 = 200 + t * 35;
-        root.style.setProperty("--glass-hue", `${hue}`);
-        root.style.setProperty("--glass-hue-2", `${hue2}`);
-        root.style.setProperty("--glass-border", `hsla(${hue}, 90%, 80%, 0.30)`);
-        root.style.setProperty("--glass-stroke", `hsla(${hue2}, 80%, 82%, 0.5)`);
-        root.style.setProperty("--glass-glow", `hsla(${hue}, 90%, 72%, 0.20)`);
-
-        if (t < 0.22) modeText.textContent = "Calm";
-        else if (t < 0.55) modeText.textContent = "Focused";
-        else modeText.textContent = "Unlocked";
-      }
-      window.addEventListener("scroll", onScroll, { passive: true });
-      onScroll();
-
-      const isFinePointer = window.matchMedia("(pointer: fine)").matches;
-
-      if (isFinePointer) {
-        window.addEventListener("pointermove", (e) => {
-          moveGlow(e.clientX, e.clientY);
-          if (card.matches(":hover")) setTiltFromPoint(e.clientX, e.clientY);
-        }, { passive: true });
-
-        card.addEventListener("pointerleave", resetTilt, { passive: true });
-      } else {
-        window.addEventListener("touchstart", (e) => {
-          const t = e.touches[0];
-          if (!t) return;
-          moveGlow(t.clientX, t.clientY);
-          setTiltFromPoint(t.clientX, t.clientY);
-        }, { passive: true });
-
-        window.addEventListener("touchmove", (e) => {
-          const t = e.touches[0];
-          if (!t) return;
-          moveGlow(t.clientX, t.clientY);
-          setTiltFromPoint(t.clientX, t.clientY);
-        }, { passive: true });
-
-        window.addEventListener("touchend", resetTilt, { passive: true });
-      }
-
-      window.addEventListener("keydown", (e) => {
-        if (e.key.toLowerCase() === "f") {
-          const el = document.getElementById("focus");
-          el?.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
-        }
-      });
-
-      const buildHint = document.getElementById("buildHint");
-      buildHint.textContent = "main";
-    })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

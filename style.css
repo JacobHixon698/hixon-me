@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+  --platinum: #d7d7d7;
+  --light: #ffffff;
+  --mid: #aaaaaa;
+  --dark: #555555;
+  --black: #111111;
+  --blue: #1d3f9f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  cursor: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M5 2 L24 18 L16 19 L21 29 L16 31 L11 20 L5 25 Z%22 fill=%22white%22 stroke=%22black%22 stroke-width=%222%22/%3E%3C/svg%3E') 4 2, auto;
+  background: #bdbdbd;
+  color: var(--black);
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  overflow-x: hidden;
+}
+
+.desktop {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.13), transparent 28%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,.025) 0,
+      rgba(0,0,0,.025) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    #bdbdbd;
+}
+
+.menu-bar {
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background: linear-gradient(#fafafa, #d0d0d0);
+  border-bottom: 1px solid #333;
+  box-shadow: 0 1px 0 #fff;
+  font-size: 12px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.apple {
+  font-size: 16px;
+  line-height: 1;
+  margin-right: -4px;
+}
+
+.screen {
+  width: min(720px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 15vh 0 35px;
+  text-align: center;
+}
+
+.welcome {
+  min-height: 145px;
+}
+
+.welcome-title {
+  display: inline-flex;
+  align-items: center;
+  min-height: 54px;
+  padding: 8px 14px;
+  font-family: VT323, "Courier New", monospace;
+  font-size: clamp(42px, 9vw, 68px);
+  letter-spacing: 1px;
+  color: #111;
+  text-shadow: 1px 1px #fff;
+}
+
+.cursor {
+  width: 3px;
+  height: .78em;
+  margin-left: 4px;
+  background: #111;
+  animation: blink .9s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.window-grid, .footer {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+
+.window-grid.visible, .footer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.window-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  text-align: left;
+}
+
+.mac-window {
+  background: var(--platinum);
+  border: 1px solid #333;
+  box-shadow:
+    2px 2px 0 #fff,
+    3px 3px 0 #555;
+}
+
+.titlebar {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 6px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #d8d8d8 0,
+      #d8d8d8 2px,
+      #f5f5f5 2px,
+      #f5f5f5 3px
+    );
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.close {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #222;
+  border-radius: 0;
+  background: #ddd;
+  font-size: 12px;
+  line-height: 10px;
+  cursor: default;
+}
+
+.title-spacer {
+  flex: 1;
+}
+
+.window-content {
+  padding: 7px;
+  display: grid;
+  gap: 5px;
+}
+
+.window-content a {
+  display: block;
+  padding: 9px 10px;
+  color: #111;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.window-content a:hover,
+.window-content a:focus-visible {
+  color: white;
+  background: var(--blue);
+  border-color: #111;
+  outline: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 4px;
+}
+
+.footer {
+  margin-top: 30px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #444;
+}
+
+@media (max-width: 600px) {
+  .menu-left span:not(.apple) {
+    display: none;
+  }
+
+  .menu-left {
+    gap: 0;
+  }
+
+  .menu-right {
+    gap: 0;
+  }
+
+  .screen {
+    padding-top: 11vh;
+  }
+
+  .window-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome {
+    min-height: 125px;
+  }
+}
